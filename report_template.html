@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Report - FitZone Pro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    line-height: 1.65;
+    font-size: 11pt;
+    background: #ffffff;
+  }
+
+  .page {
+    page-break-after: always;
+    padding: 10px 0;
+  }
+
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+    padding: 40px 20px;
+    border: 3px double #0f172a;
+    box-sizing: border-box;
+  }
+
+  .cover-header h3 {
+    font-size: 13pt;
+    letter-spacing: 2px;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .cover-title {
+    margin: 50px 0 20px 0;
+  }
+
+  .cover-title h1 {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .cover-title h2 {
+    font-size: 15pt;
+    font-weight: 500;
+    color: #f97316;
+    letter-spacing: 0.5px;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #ffedd5;
+    color: #c2410c;
+    border-radius: 9999px;
+    font-size: 10pt;
+    font-weight: 600;
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
+
+  .cover-meta {
+    margin: 40px 0;
+    font-size: 12pt;
+    line-height: 1.8;
+  }
+
+  .cover-author {
+    margin-top: 30px;
+    padding: 16px 32px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    display: inline-block;
+  }
+
+  .cover-author p {
+    font-size: 12pt;
+    color: #334155;
+  }
+
+  .cover-author .name {
+    font-size: 16pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .cover-author .roll {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #f97316;
+  }
+
+  .cover-footer {
+    font-size: 10pt;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+    width: 100%;
+  }
+
+  h1.section-title {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 3px solid #f97316;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  h2.sub-title {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 22px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: #334155;
+    margin: 14px 0 6px 0;
+  }
+
+  p {
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin: 8px 0 14px 22px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px 0;
+    font-size: 9.5pt;
+  }
+
+  th, td {
+    padding: 9px 12px;
+    text-align: left;
+    border: 1px solid #cbd5e1;
+  }
+
+  th {
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  .code-block {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    line-height: 1.5;
+    margin: 12px 0;
+    overflow-x: auto;
+  }
+
+  .callout {
+    border-left: 4px solid #f97316;
+    background: #fff7ed;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 14px 0;
+    font-size: 10pt;
+  }
+
+  .callout strong {
+    color: #c2410c;
+  }
+
+  .architecture-box {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: monospace;
+    white-space: pre;
+    font-size: 9pt;
+    line-height: 1.4;
+    color: #0f172a;
+    margin: 12px 0;
+  }
+
+  .signature-table {
+    width: 100%;
+    margin-top: 60px;
+    border: none;
+  }
+
+  .signature-table td {
+    border: none;
+    background: transparent !important;
+    text-align: center;
+    vertical-align: bottom;
+    padding: 20px;
+  }
+
+  .signature-line {
+    border-top: 1px solid #0f172a;
+    width: 80%;
+    margin: 0 auto 6px auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  .badge-get { background: #dbeafe; color: #1e40af; }
+  .badge-post { background: #dcfce7; color: #15803d; }
+  .badge-put { background: #fef3c7; color: #b45309; }
+  .badge-delete { background: #fee2e2; color: #b91c1c; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER PAGE -->
+<div class="page">
+  <div class="cover-page">
+    <div class="cover-header">
+      <h3>Project Report on Full-Stack Web Development</h3>
+      <div class="cover-badge">Academic Year 2025 – 2026</div>
+    </div>
+
+    <div class="cover-title">
+      <h1>FitZone Pro</h1>
+      <h2>Smart Gym Management & Fitness Web Platform</h2>
+      <p style="margin-top: 12px; color: #64748b; font-size: 11pt;">
+        Built with React.js, Node.js, Express.js, and MongoDB
+      </p>
+    </div>
+
+    <div class="cover-meta">
+      <p>A Project Report Submitted in Partial Fulfillment of the Requirements<br>
+      for Degree of Bachelor of Computer Applications / Technology</p>
+    </div>
+
+    <div class="cover-author">
+      <p style="text-transform: uppercase; letter-spacing: 1px; font-size: 10pt; color: #64748b;">Submitted By</p>
+      <div class="name">PRANAY ADANGALE</div>
+      <div class="roll">Roll No: 201</div>
+    </div>
+
+    <div class="cover-footer">
+      <p>Department of Computer Science & Information Technology</p>
+      <p>October 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: CERTIFICATE & DECLARATION -->
+<div class="page">
+  <h1 class="section-title">Certificate of Authenticity</h1>
+  <p>
+    This is to certify that the project report entitled <strong>"FitZone Pro – Smart Gym Management and Fitness Platform"</strong> submitted by <strong>Pranay Adangale (Roll No: 201)</strong> in partial fulfillment of the requirements for the award of Bachelor's Degree in Computer Science / Information Technology is a bonafide record of independent project work carried out under guidance.
+  </p>
+  <p>
+    The results embodied in this report have not been submitted to any other University or Institute for the award of any degree or diploma.
+  </p>
+
+  <table class="signature-table">
+    <tr>
+      <td>
+        <div class="signature-line"></div>
+        <strong>Project Guide / Mentor</strong><br>
+        Department of Computer Science
+      </td>
+      <td>
+        <div class="signature-line"></div>
+        <strong>Head of Department</strong><br>
+        Department of Computer Science
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 50px;"></div>
+
+  <h1 class="section-title">Candidate's Declaration</h1>
+  <p>
+    I, <strong>Pranay Adangale</strong>, student of Roll No: <strong>201</strong>, hereby declare that the project work presented in this report entitled <strong>"FitZone Pro – Smart Gym Management and Fitness Platform"</strong> is my own authentic work.
+  </p>
+  <p>
+    All contributions, third-party libraries, and software engineering frameworks referenced in the project have been duly acknowledged and documented in this report.
+  </p>
+
+  <div style="margin-top: 50px; text-align: right; padding-right: 20px;">
+    <strong>PRANAY ADANGALE</strong><br>
+    Roll No: 201<br>
+    Date: October 15, 2026
+  </div>
+</div>
+
+<!-- PAGE 3: ABSTRACT & ACKNOWLEDGEMENTS -->
+<div class="page">
+  <h1 class="section-title">Abstract</h1>
+  <p>
+    Modern fitness facilities and gyms face operational bottlenecks stemming from manual record-keeping, disconnected membership tracking, lack of self-service booking options for members, and absent analytical tools for progress tracking. Traditional paper-based registers and basic spreadsheets lead to billing errors, double-booked workout slots, and decreased client retention.
+  </p>
+  <p>
+    <strong>FitZone Pro</strong> is an enterprise-grade full-stack web application architected to digitize and automate gym operations end-to-end. Built using the modern MERN stack (MongoDB, Express.js, React 18, Node.js), FitZone Pro bridges the divide between gym administration and members through an interactive, responsive portal.
+  </p>
+  <p>
+    Key capabilities include:
+  </p>
+  <ul>
+    <li><strong>Role-Based Access Control (RBAC):</strong> Strict separation between Administrator and Member privileges with cryptographically secure JWT authentication and password hashing (bcryptjs).</li>
+    <li><strong>Subscription & Tier Management:</strong> Automated membership lifecycles across Basic, Standard, Premium, and Elite tiers with status monitoring.</li>
+    <li><strong>Live Booking Engine:</strong> Real-time session reservation with class capacity tracking, slot collision avoidance, and automated conflict rejection.</li>
+    <li><strong>Fitness & Health Analytics:</strong> Integrated interactive Body Mass Index (BMI) calculator, Total Daily Energy Expenditure (TDEE) and macronutrient estimator, and visual workout metric logging powered by Recharts.</li>
+    <li><strong>Comprehensive Admin Suite:</strong> Centralized dashboard providing financial KPIs, member roster management, workout program CRUD, trainer assignment, and contact inbox tracking.</li>
+  </ul>
+
+  <h2 class="sub-title">Acknowledgements</h2>
+  <p>
+    I extend my sincere gratitude to my faculty mentors, project guides, and colleagues whose academic insights, constructive reviews, and technical guidance made this project achievable.
+  </p>
+  <p>
+    I also thank the open-source software engineering community behind React, Node.js, Express, MongoDB, Render, and Vercel for providing the robust ecosystem on which this application was constructed and deployed.
+  </p>
+</div>
+
+<!-- PAGE 4: SYSTEM ARCHITECTURE & TECH STACK -->
+<div class="page">
+  <h1 class="section-title">System Architecture & Technology Stack</h1>
+
+  <h2 class="sub-title">1. Architectural Paradigm</h2>
+  <p>
+    FitZone Pro follows a decoupled <strong>Three-Tier Client-Server Architecture</strong> adhering strictly to RESTful design principles. The presentation layer (Frontend) communicates with the business logic layer (Backend API) asynchronously via JSON payloads over HTTP/HTTPS.
+  </p>
+
+  <div class="architecture-box">
++--------------------------------------------------------------------------+
+|                     PRESENTATION TIER (Frontend)                         |
+|   React 18 + Vite SPA | React Router v6 | Recharts Data Visualization   |
+|   Responsive CSS3 Glassmorphism UI Tokens | Lucide-React SVG Icons       |
++--------------------------------------------------------------------------+
+                                     │
+                             HTTP/HTTPS (JSON)
+                      JWT Authorization: Bearer &lt;Token&gt;
+                                     ▼
++--------------------------------------------------------------------------+
+|                     APPLICATION TIER (Backend API)                       |
+|   Node.js + Express.js REST Framework | JWT & Bcrypt Authentication     |
+|   Role-Based Access Middleware (Admin / Member) | Error Handling Layer   |
++--------------------------------------------------------------------------+
+                                     │
+                             Mongoose ODM Protocol
+                                     ▼
++--------------------------------------------------------------------------+
+|                       DATA TIER (Database Cloud)                         |
+|   MongoDB Atlas Replica Set Cluster | Mongoose Schemas &amp; Validations     |
+|   Collections: Users, Programs, Trainers, Bookings, Progress, Contacts   |
++--------------------------------------------------------------------------+
+  </div>
+
+  <h2 class="sub-title">2. Technology Stack Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Technology</th>
+        <th>Version</th>
+        <th>Role / Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend Framework</strong></td>
+        <td>React.js</td>
+        <td>18.3.1</td>
+        <td>Single-page dynamic UI rendering and component state management</td>
+      </tr>
+      <tr>
+        <td><strong>Routing Engine</strong></td>
+        <td>React Router DOM</td>
+        <td>6.24.0</td>
+        <td>Client-side routing with ProtectedRoute and AdminRoute guards</td>
+      </tr>
+      <tr>
+        <td><strong>Data Visualization</strong></td>
+        <td>Recharts</td>
+        <td>2.12.7</td>
+        <td>Interactive responsive line charts for weight and calorie metrics</td>
+      </tr>
+      <tr>
+        <td><strong>HTTP Client</strong></td>
+        <td>Axios</td>
+        <td>1.7.2</td>
+        <td>Asynchronous API requests with request/response interceptors</td>
+      </tr>
+      <tr>
+        <td><strong>Backend Runtime</strong></td>
+        <td>Node.js</td>
+        <td>v18+</td>
+        <td>Event-driven non-blocking I/O server execution environment</td>
+      </tr>
+      <tr>
+        <td><strong>API Framework</strong></td>
+        <td>Express.js</td>
+        <td>4.18.2</td>
+        <td>Routing, REST endpoints, middleware pipeline, and controllers</td>
+      </tr>
+      <tr>
+        <td><strong>Database Engine</strong></td>
+        <td>MongoDB Atlas</td>
+        <td>v8.0+</td>
+        <td>Cloud NoSQL Document-oriented persistent database</td>
+      </tr>
+      <tr>
+        <td><strong>Object Modeling</strong></td>
+        <td>Mongoose</td>
+        <td>8.3.2</td>
+        <td>Schema validation, relationship modeling, and database indexing</td>
+      </tr>
+      <tr>
+        <td><strong>Security & Auth</strong></td>
+        <td>JWT & bcryptjs</td>
+        <td>9.0 / 2.4</td>
+        <td>Stateless token authentication and 12-round salted password hashing</td>
+      </tr>
+      <tr>
+        <td><strong>Cloud Hosting</strong></td>
+        <td>Render & Vercel</td>
+        <td>Cloud</td>
+        <td>Render (Backend Web Service) + Vercel (Frontend Global CDN Edge)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 5: DATABASE SCHEMA DESIGN -->
+<div class="page">
+  <h1 class="section-title">Database Design & Schema Models</h1>
+  <p>
+    The database layer uses MongoDB, structured with Mongoose ODM to enforce strict type checking, validations, default values, and relational references (ObjectId).
+  </p>
+
+  <h2 class="sub-title">1. User Schema (`User.js`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Data Type</th>
+        <th>Constraints</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td>String</td>
+        <td>Required, Trimmed</td>
+        <td>Full name of the user</td>
+      </tr>
+      <tr>
+        <td><code>email</code></td>
+        <td>String</td>
+        <td>Required, Unique, Lowercase</td>
+        <td>Unique user identity for authentication</td>
+      </tr>
+      <tr>
+        <td><code>password</code></td>
+        <td>String</td>
+        <td>Required, select: false</td>
+        <td>Hashed password (bcrypt 12 rounds)</td>
+      </tr>
+      <tr>
+        <td><code>role</code></td>
+        <td>String</td>
+        <td>Enum: ['member', 'admin']</td>
+        <td>User authorization privilege level</td>
+      </tr>
+      <tr>
+        <td><code>phone</code></td>
+        <td>String</td>
+        <td>Optional</td>
+        <td>Contact phone number</td>
+      </tr>
+      <tr>
+        <td><code>membership.plan</code></td>
+        <td>String</td>
+        <td>Enum: ['Basic', 'Standard', 'Pro', 'Elite']</td>
+        <td>Current subscribed fitness tier</td>
+      </tr>
+      <tr>
+        <td><code>membership.status</code></td>
+        <td>String</td>
+        <td>Enum: ['active', 'inactive', 'expired']</td>
+        <td>Subscription standing</td>
+      </tr>
+      <tr>
+        <td><code>membership.startDate</code></td>
+        <td>Date</td>
+        <td>Default: Date.now</td>
+        <td>Plan start timestamp</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">2. Workout Program Schema (`WorkoutProgram.js`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Data Type</th>
+        <th>Constraints</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>title</code></td>
+        <td>String</td>
+        <td>Required, Trimmed</td>
+        <td>Program name (e.g., CrossFit Masterclass)</td>
+      </tr>
+      <tr>
+        <td><code>category</code></td>
+        <td>String</td>
+        <td>Enum: ['Strength', 'Cardio', 'HIIT', 'Yoga', 'Boxing', 'Pilates']</td>
+        <td>Fitness specialization category</td>
+      </tr>
+      <tr>
+        <td><code>intensity</code></td>
+        <td>String</td>
+        <td>Enum: ['Beginner', 'Intermediate', 'Advanced', 'All Levels']</td>
+        <td>Difficulty level indicator</td>
+      </tr>
+      <tr>
+        <td><code>duration</code></td>
+        <td>Number</td>
+        <td>Required, Min: 15</td>
+        <td>Session duration in minutes</td>
+      </tr>
+      <tr>
+        <td><code>capacity</code></td>
+        <td>Number</td>
+        <td>Required, Default: 20</td>
+        <td>Maximum attendance limit per session</td>
+      </tr>
+      <tr>
+        <td><code>trainer</code></td>
+        <td>ObjectId</td>
+        <td>Ref: 'Trainer'</td>
+        <td>Assigned fitness coach</td>
+      </tr>
+      <tr>
+        <td><code>schedule.days</code></td>
+        <td>[String]</td>
+        <td>Required</td>
+        <td>Days of the week (e.g., Mon, Wed, Fri)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">3. Session Booking Schema (`TrainingBooking.js`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Data Type</th>
+        <th>Constraints</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>user</code></td>
+        <td>ObjectId</td>
+        <td>Required, Ref: 'User'</td>
+        <td>Member making reservation</td>
+      </tr>
+      <tr>
+        <td><code>program</code></td>
+        <td>ObjectId</td>
+        <td>Required, Ref: 'WorkoutProgram'</td>
+        <td>Reserved fitness program</td>
+      </tr>
+      <tr>
+        <td><code>sessionDate</code></td>
+        <td>Date</td>
+        <td>Required</td>
+        <td>Scheduled workout date</td>
+      </tr>
+      <tr>
+        <td><code>status</code></td>
+        <td>String</td>
+        <td>Enum: ['confirmed', 'cancelled', 'completed']</td>
+        <td>Reservation lifecycle state</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 6: API ENDPOINTS DOCUMENTATION -->
+<div class="page">
+  <h1 class="section-title">RESTful API Endpoints Specification</h1>
+  <p>
+    All API endpoints are prefixed with <code>/api</code> and return standardized JSON responses formatted as <code>{ success: Boolean, data: Object/Array, message: String }</code>.
+  </p>
+
+  <h2 class="sub-title">1. Authentication Module (`/api/auth`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Access</th>
+        <th>Functionality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/auth/register</code></td>
+        <td>Public</td>
+        <td>Registers a new member, hashes password, assigns plan, issues JWT</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/auth/login</code></td>
+        <td>Public</td>
+        <td>Validates credentials and issues 7-day signed JWT token</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/auth/me</code></td>
+        <td>Private</td>
+        <td>Retrieves the authenticated user's session profile</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">2. Class Bookings Module (`/api/bookings`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Access</th>
+        <th>Functionality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/bookings</code></td>
+        <td>Member</td>
+        <td>Reserves a class slot with capacity collision check</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/bookings/my</code></td>
+        <td>Member</td>
+        <td>Fetches personal upcoming & past class reservations</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-put">PUT</span></td>
+        <td><code>/api/bookings/:id/cancel</code></td>
+        <td>Member</td>
+        <td>Cancels a confirmed booking and frees up class slot</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/bookings</code></td>
+        <td>Admin</td>
+        <td>Fetches gym-wide bookings with filter by status & date</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-put">PUT</span></td>
+        <td><code>/api/bookings/:id/status</code></td>
+        <td>Admin</td>
+        <td>Updates reservation status (confirmed, completed, cancelled)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">3. Workout Progress & Analytics Module (`/api/progress`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Access</th>
+        <th>Functionality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/progress/my</code></td>
+        <td>Member</td>
+        <td>Returns historical weight, body fat %, and calorie burn log</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/progress</code></td>
+        <td>Member</td>
+        <td>Logs a new workout entry with date, weight, and calories</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-delete">DELETE</span></td>
+        <td><code>/api/progress/:id</code></td>
+        <td>Member</td>
+        <td>Removes a progress log entry</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">4. Administrative Control Module (`/api/admin`)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Endpoint</th>
+        <th>Access</th>
+        <th>Functionality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/admin/stats</code></td>
+        <td>Admin</td>
+        <td>Aggregates active members, revenue, occupancy %, inquiries</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/admin/users</code></td>
+        <td>Admin</td>
+        <td>Paginated member roster with membership filter</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-put">PUT</span></td>
+        <td><code>/api/admin/users/:id</code></td>
+        <td>Admin</td>
+        <td>Updates member plan, status, and role privileges</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-delete">DELETE</span></td>
+        <td><code>/api/admin/users/:id</code></td>
+        <td>Admin</td>
+        <td>Deletes a member account from system</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 7: MODULES & USER INTERFACE -->
+<div class="page">
+  <h1 class="section-title">Frontend Modules & User Interfaces</h1>
+  <p>
+    The frontend is composed of 19 distinct React views designed with high aesthetic standards, featuring dark modern glassmorphism, responsive CSS flexbox/grid layouts, micro-animations, and clean typography.
+  </p>
+
+  <h2 class="sub-title">1. Public Features</h2>
+  <ul>
+    <li><strong>Landing Page:</strong> High-impact hero section, statistics counter (10,000+ members, 40+ trainers, 15+ years experience), interactive BMI calculator with dynamic category classification (Underweight, Normal, Overweight, Obese), featured workout highlights, pricing packages, trainer profiles, and customer testimonials.</li>
+    <li><strong>Programs Catalog:</strong> Filterable grid by Category (Cardio, Strength, HIIT, Yoga) and Difficulty with instant modal for scheduling.</li>
+    <li><strong>Nutrition & Diet Suite:</strong> Interactive Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) calculator providing precise daily calorie targets and protein/carb/fat gram distributions according to fitness goals (Weight Loss, Maintenance, Muscle Gain).</li>
+    <li><strong>Trainers Showcase:</strong> Coach bios, certifications, ratings, and instant consultation scheduling.</li>
+  </ul>
+
+  <h2 class="sub-title">2. Member Dashboard Portal</h2>
+  <ul>
+    <li><strong>Member Overview:</strong> Displays active membership card, countdown to renewal, attendance counter, and quick action shortcuts.</li>
+    <li><strong>Class Reservations:</strong> Live schedule browser allowing members to book workout sessions and view upcoming or past reservations.</li>
+    <li><strong>Visual Analytics:</strong> Responsive Recharts charts plotting body weight progression over time and daily calorie expenditure trends alongside detailed historical workout records.</li>
+  </ul>
+
+  <h2 class="sub-title">3. Admin Management Portal</h2>
+  <ul>
+    <li><strong>KPI Analytics Overview:</strong> Real-time gym health monitoring displaying total revenue, member count, class capacity utilization, and pending messages.</li>
+    <li><strong>Member Administration:</strong> Full member list with inline search, plan upgrade/downgrade capability, status toggles (Active/Suspended), and deletion.</li>
+    <li><strong>Content CRUD Management:</strong> Dedicated interfaces for adding, editing, and archiving Workout Programs, Trainer Profiles, and Membership Plans.</li>
+    <li><strong>Communication Inbox:</strong> Tracks public inquiries submitted via the contact form with status badges (New, In-Progress, Resolved).</li>
+  </ul>
+</div>
+
+<!-- PAGE 8: CLOUD DEPLOYMENT & VIVA Q&A -->
+<div class="page">
+  <h1 class="section-title">Cloud Deployment & Viva Voce Guide</h1>
+
+  <h2 class="sub-title">1. Production Deployment Topology</h2>
+  <p>
+    The system is configured for cloud deployment:
+  </p>
+  <ul>
+    <li><strong>Backend Service:</strong> Hosted on <strong>Render Cloud Web Services</strong> with automatic restart, environment secret management, and continuous Git integration.</li>
+    <li><strong>Frontend Service:</strong> Hosted on <strong>Vercel Global Edge Network</strong> with SPA URL rewrites (configured via <code>vercel.json</code>) ensuring seamless HTML5 client-side navigation.</li>
+    <li><strong>Database Cluster:</strong> Hosted on <strong>MongoDB Atlas</strong> with IP whitelist configuration allowing connection from anywhere (<code>0.0.0.0/0</code>).</li>
+  </ul>
+
+  <h2 class="sub-title">2. Comprehensive Viva Voce Questions & Answers</h2>
+
+  <div class="callout">
+    <strong>Q1: Why did you choose MongoDB over a traditional Relational Database (SQL)?</strong><br>
+    <strong>A:</strong> Gym data entities such as workout programs, trainer profiles, and member progress have dynamic, nested structures (e.g., array of schedule days, social links, progress history logs). MongoDB's flexible JSON-like document model allows rapid schema iteration without costly SQL migration scripts, while Mongoose provides strict schema validations and indexing.
+  </div>
+
+  <div class="callout">
+    <strong>Q2: How is security implemented for authentication and password protection?</strong><br>
+    <strong>A:</strong> Passwords are never stored in plaintext. They are hashed using <code>bcryptjs</code> with an algorithmic cost factor of 12 salt rounds before persisting to MongoDB. When logging in, the server generates a signed JSON Web Token (JWT) containing the user's ID and role encrypted with a secret key. Protected endpoints require the token in the <code>Authorization: Bearer &lt;token&gt;</code> header, validated by custom Express middleware (<code>auth.js</code>).
+  </div>
+
+  <div class="callout">
+    <strong>Q3: How does the system prevent double-booking or overcapacity in workout classes?</strong><br>
+    <strong>A:</strong> In <code>bookingController.js</code>, prior to inserting a reservation, the API executes a query checking existing confirmed bookings for that specific program and date. If the count reaches <code>program.capacity</code>, the system rejects the booking with an HTTP 400 error indicating the class is full.
+  </div>
+
+  <div class="callout">
+    <strong>Q4: Why is <code>vercel.json</code> required when deploying React on Vercel?</strong><br>
+    <strong>A:</strong> React is a Single Page Application (SPA) using HTML5 History API for routing. When a user directly visits or refreshes a URL like <code>/dashboard</code>, the server looks for a physical <code>dashboard.html</code> file which doesn't exist. The <code>vercel.json</code> rewrite routes all incoming requests to <code>/index.html</code>, letting React Router handle page rendering on the client.
+  </div>
+
+  <h2 class="sub-title">3. Conclusion</h2>
+  <p>
+    <strong>FitZone Pro</strong> successfully meets the functional and architectural criteria of a contemporary web application. By eliminating manual administrative friction and providing modern self-service tools for members, the system modernizes fitness center management and establishes a foundation for future extensions such as automated payment gateways and mobile applications.
+  </p>
+
+  <div style="margin-top: 30px; text-align: center; color: #64748b; font-size: 10pt;">
+    — End of Project Report —<br>
+    <strong>FitZone Pro &bull; Pranay Adangale (Roll No: 201) &bull; Academic Year 2026</strong>
+  </div>
+</div>
+
+</body>
+</html>
