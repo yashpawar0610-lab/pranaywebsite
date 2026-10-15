@@ -592,6 +592,8 @@ if (existingCount &gt;= program.capacity) {
 <div class="section">
   <h2 class="sec-title">14. References</h2>
   <ul>
+    <li>Project GitHub Repository: <a href="https://github.com/yashpawar0610-lab/pranaywebsite">https://github.com/yashpawar0610-lab/pranaywebsite</a></li>
+    <li>Live Backend API (Render): <a href="https://pranaywebsite.onrender.com">https://pranaywebsite.onrender.com</a></li>
     <li>React Official Documentation: <a href="https://react.dev/">https://react.dev/</a></li>
     <li>Node.js Official Documentation: <a href="https://nodejs.org/docs/">https://nodejs.org/docs/</a></li>
     <li>Express.js Web Framework Documentation: <a href="https://expressjs.com/">https://expressjs.com/</a></li>
